@@ -1,0 +1,53 @@
+<!-- @format -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="app-name" content="website_viewer" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/x-icon" href="/static/media/logo.png" />
+		<link rel="stylesheet" href="{% static 'style/webstyle.css' %}" />
+		<title>Home | College Recommendation System</title>
+	</head>
+	<body>
+		<div class="start">
+			<form action="/intro/" class="homeform" method="post">
+				{% csrf_token %}
+				<h1 class="hometitle">
+					college recommendation system base on user knowledge using
+					multivariate regression
+				</h1>
+				<div class="inputbox">
+					<div>
+						<label for="nickname">nickname :</label>
+						<input
+							type="text"
+							name="nickname"
+							id="nickname"
+							class="inputs"
+							placeholder="Juan Dela Crus"
+							autocomplete="off"
+							required />
+					</div>
+					<div>
+						<label for="gwa">gwa :</label>
+						<input
+							type="number"
+							name="gwa"
+							step="any"
+							id="gwa"
+							class="inputs"
+							placeholder="75 - 100"
+							min="75"
+							max="100"
+							required />
+					</div>
+				</div>
+				<div class="btnholder">
+					<input type="submit" value="submit" class="btn" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

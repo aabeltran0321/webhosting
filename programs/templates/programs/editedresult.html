@@ -1,0 +1,46 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="app-name" content="website_viewer" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'style/webstyle.css' %}" />
+		<title>Results | College Recommendation System</title>
+	</head>
+	<body>
+		<div class="fenclose">
+			<div class="resultform">
+				<h1 class="ftitle">
+					COLLEGE RECOMMENDATION SYSTEM BASE ON USER KNOWLEDGE USING
+					MULTIVARIATE REGRESSION
+				</h1>
+				<div class="resultbox">
+					<h2>RESULTS</h2>
+					<p class="ptext">
+						here are the college programs recommendation for you:
+					</p>
+					<ul class="list">
+						<li>{{ choice_1 }}</li>
+						<li>{{ choice_2 }}</li>
+						<li>{{ choice_3 }}</li>
+					</ul>
+					<p class="ptext">aptitude test result:</p>
+					<ul class="list">
+						<li>General Information: {{ score_1 }}%</li>
+						<li>Science: {{ score_2 }}%</li>
+						<li>Numerical Reasoning: {{ score_3 }}%</li>
+						<li>Verbal Reasoning: {{ score_4 }}%</li>
+						<li>Abstract Reasoning: {{ score_5 }}%</li>
+					</ul>
+				</div>
+				<div class="fbtnbox">
+					<a href="/home" class="fbtn">HOME</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
