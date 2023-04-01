@@ -188,7 +188,7 @@ class MyViews_cap:
         
         return render(request, 'programs/index.html')
     def forecast(self,request):
-        self.pcnt = float(random.randint(9780,9999)/10000)
+        self.pcnt = float(random.randint(9780,9999)/10000)*100.0
         return render(request, 'programs/sectors.html')
 
     def contact(self,request):

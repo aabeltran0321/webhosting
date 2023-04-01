@@ -132,16 +132,16 @@
       <!-- about promotional start -->
       <div class="about_section layout_padding" style=" padding-top: 0;">
          <div style="width: 100%;">
-            <h1 class="about_taital">FORECAST </h1><br>        
+            <h1 class="about_taital">Results for {{current_month}}</h1><br>        
          </div>
          <center>
          <div class="iframe-container2">
             <div class = "current_div">
-               <h1 class="current_taital">{{current_month}}</h1><br>
+               <h1 class="current_taital">Current Rate</h1><br>
                <h1 class="current_taital1">{{present_rate}}%</h1>
             </div>
             <div class = "fore_div">
-               <h1 class="current_taital">{{next_month}}</h1><br>
+               <h1 class="current_taital">Forecasted Rate</h1><br>
                <h1 class="current_taital1">{{forecast_rate}}%</h1>
             </div>
             
@@ -200,8 +200,11 @@
                   }]
                },
                options: {
-                  legend: {
-                     display: false,
+                  plugins: { legend: { display: false, }, },
+                  scales:{
+                  x: {
+                     display: false
+                  }
                   },
                   onClick: (event, elements, chart) => {
                      if (elements[0]) {            
@@ -214,7 +217,7 @@
                            document.getElementById('prevlabelID').value= chart.data.labels[i-1];
                            document.getElementById('prevdataID').value= chart.data.datasets[0].data[i+1];
                            document.getElementById('nextlabelID').value= chart.data.labels[i+1];
-                           document.getElementById('nextdataID').value= chart.data.datasets[0].data[i+1];
+                           document.getElementById('nextdataID').value= chart.data.datasets[1].data[i];
                            document.getElementById("formRes").submit();
                         }
                         else{
@@ -226,6 +229,7 @@
                   } 
                }
                });
+               
                </script>
 
             </div>
