@@ -132,16 +132,16 @@
       <!-- about promotional start -->
       <div class="about_section layout_padding" style=" padding-top: 0;">
          <div style="width: 100%;">
-            <h1 class="about_taital">FORECAST</h1><br>        
+            <h1 class="about_taital">FORECAST </h1><br>        
          </div>
          <center>
          <div class="iframe-container2">
             <div class = "current_div">
-               <h1 class="current_taital">CURRENT STATUS</h1><br>
+               <h1 class="current_taital">{{current_month}}</h1><br>
                <h1 class="current_taital1">{{present_rate}}%</h1>
             </div>
             <div class = "fore_div">
-               <h1 class="current_taital">Next Month STATUS</h1><br>
+               <h1 class="current_taital">{{next_month}}</h1><br>
                <h1 class="current_taital1">{{forecast_rate}}%</h1>
             </div>
             
@@ -159,90 +159,7 @@
       <script src="" class="handlers">{{dates_to_plot}}</script>
       <!-- about section end -->
 
-      <!-- about promotional start -->
-      <div class="about_section layout_padding" style="margin-top: -7%;">
-         <div style="width: 100%;">
-            <h1 class="about_taital">Three Months Advance Forecast</h1><br>        
-         </div>
-         <center>
-         <div class="iframe-container2">
-            <div style="width: 80%;">
-               <canvas id="myChart" style="width:100%;"></canvas>
-
-               <script>
-               var xValues = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-               var yValues = [86,87,84,85,86,83,82,80,85,86,87,89,88];
-               
-               new Chart("myChart", {
-                 type: "line",
-                 data: {
-                   labels: {{dates_to_plot|safe}},
-                   datasets: [{
-                     fill: false,
-                     lineTension: 0,
-                     backgroundColor: "#202d36",
-                     borderColor: "#74c6ff",
-                     data: {{data_average|safe}}
-                   }]
-                 },
-                 options: {
-                   legend: {display: false},
-                   
-                 }
-               });
-               </script>
-            </div>
-         </div> 
-      </center>
-      </div>
-      <!-- about section end -->
-
-      <!-- about promotional start -->
-      <div class="about_section layout_padding" style=" padding-top: 0;">
-         <div style="width: 100%;">
-            <h1 class="about_taital">HISTORY OF {{sector_name_upper}} AVERAGE CAPACITY UTILIZATION RATE</h1><br>        
-         </div>
-         <center>
-            <div class="iframe-container2">
-               <div style="width: 80%;">
-                  <canvas id="myChart2" style="width:100%;"></canvas>
    
-                  <script>
-                  var xValues = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-                  var yValues = [86,87,84,85,86,83,82,80,85,86,87,89,88];
-                  
-                  new Chart("myChart2", {
-                    type: "line",
-                    
-                    data: {
-                      labels: {{years|safe}},
-                      datasets: [{
-                        
-                        fill: false,
-                        lineTension: 0,
-                        backgroundColor: "#202d36",
-                        borderColor: "#74c6ff",
-                        data: {{history_data|safe}}
-                      }]
-                    },
-                    options: {
-                     legend: {display: false},
-                     
-                    }
-                  });
-                  
-                  </script>
-               </div>
-            </div> 
-         <!-- <div class="iframe-container2">
-            <div style="width: 80%;">
-               <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-               <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-            </div>
-         </div>  -->
-         </center>
-      </div>
-      <!-- about section end -->
       <!-- level of confidence start -->
       <div class="about_section layout_padding" style=" padding-top: 0;">
          <div style="width: 100%;">
@@ -263,7 +180,6 @@
                   <input type="hidden" id="nextdataID" name="nextdataID" value="">
                   
                   <input type="hidden" id="sectorName" name="sectorName" value="{{sector_name_upper}}">
-                  
                </form>
 
                <script>

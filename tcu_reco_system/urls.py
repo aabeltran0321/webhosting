@@ -41,5 +41,6 @@ urlpatterns = [
     path('sectors/', MyViews2.sectors),
     path('forecast/', MyViews2.forecast),
     path('contact/', MyViews2.contact),
+    path('sectors2/', MyViews2.sectors2),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

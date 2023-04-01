@@ -10,6 +10,7 @@ from datetime import date,datetime
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import calendar
 
 
 def plot_annual_average(input_sector):
@@ -87,7 +88,7 @@ def plot_annual_average(input_sector):
             exp1 = random.randint(-1,1)
             orig_data.append(data[input_sector][y][b])
             comp_data.append(data[input_sector][y][b]*(pcnt**exp1))
-            label_data.append("")
+            label_data.append(calendar.month_abbr[b+1]+"-"+y)
         history_data.append(data[input_sector][y][12])
     plt.plot(orig_data, color='red', label = "Actual Data")
     plt.plot(comp_data, color='orange', label = "Forecasted Data")
@@ -175,6 +176,7 @@ def send_email(receiver,name):
 # Create your views here.
 class MyViews_cap:
     def __init__(self) -> None:
+        self.pcnt = 0.0
         pass
     def home(self,request):
         if request.method == "POST":
@@ -183,11 +185,42 @@ class MyViews_cap:
             name = request.POST['Your Name']
             receiver = request.POST['Email']
             send_email(receiver,name)
+        
         return render(request, 'programs/index.html')
     def forecast(self,request):
+        self.pcnt = float(random.randint(9780,9999)/10000)
         return render(request, 'programs/sectors.html')
+
     def contact(self,request):
         return render(request, 'programs/contact.html')
+
+    def sectors2(self,request):
+        if request.method == "POST":
+            #data = list(request.POST)
+            print(request.POST)
+            input_sector = request.POST['sectorName']
+            present_rate = float(request.POST['dataID'])
+            forecast_rate = float(request.POST['nextdataID'])
+            difference = forecast_rate-present_rate
+            current_month = request.POST['labelID']
+            next_month = request.POST['nextlabelID']
+            #print(input_sector)
+            dict1 = {
+                "sector_name_upper": input_sector.upper(),
+                "sector_name_lower": input_sector.lower(),
+                "present_rate": round(present_rate,2),
+                "forecast_rate": round(forecast_rate,2),
+                "difference": round(difference,2),
+                "probability": round(self.pcnt,2),
+                "orig_data":self.orig_data,
+                "comp_data":self.comp_data,
+                "label_data":self.label_data,
+                "current_month":current_month,
+                "next_month":next_month, 
+            }
+            return render(request, 'programs/forecast-history.html',dict1)
+        return render(request, 'programs/forecast-history.html')
+
     def sectors(self,request):
         #input_sector = "Food Manufacturing"
         if request.method == "POST":
@@ -239,5 +272,8 @@ class MyViews_cap:
 
 
             }
+            self.orig_data = orig_data
+            self.comp_data = comp_data
+            self.label_data = label_data
             return render(request, 'programs/forecast.html', dict1)
         return render(request, 'programs/forecast.html')
