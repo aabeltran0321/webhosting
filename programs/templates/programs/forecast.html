@@ -274,17 +274,19 @@
                data: {
                   labels: {{label_data|safe}},
                   datasets: [{ 
+                     label: "Actual Data",
                      data: {{orig_data|safe}},
                      borderColor: "#202d36",
                      fill: false
                   }, { 
+                     label: 'Forecast',
                      data: {{comp_data|safe}},
                      borderColor: "#74c6ff",
                      fill: false
                   }]
                },
                options: {
-                  plugins: { legend: { display: false, }, },
+                  plugins: { legend: { display: true, }, },
                   scales:{
                   x: {
                      display: false
